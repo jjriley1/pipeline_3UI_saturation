@@ -1,0 +1,43 @@
+## Saturation pipeline simple config
+
+# how many simulations do you want to do of the whole thing?
+num_simulations: 3
+
+# provide a list of n's where n = the number of files to merge
+# e.g. [1,2,3] will produce 3 outputs (if num_simulations is also 1) where you have 1 gtf, 2 merged into 1, and 3 merged into 1
+intervals_list: [1,5,10,15,20,25,50,100,150,200,250,300]
+
+
+# Annotations
+
+annotations:
+    database: 
+
+    # directory with annotation information
+    dir: 
+    interface_geneset_all_gtf: 
+    # file with apris l1 and l2 protein coding reference
+    filtered_reference_gtf: 
+
+
+# StringTie options
+
+stringtie:
+    #options for assembling with stringtie
+    threads: 16
+    options: -f 0.05
+    memory: 1.9G
+
+    merge_threads: 4
+    merge_memory: 15.8G
+    merge_options: -F 0 -T 1
+    groups: []
+
+    #options for quantifying with stringtie
+    quant_threads: 4
+    quant_memory: 24G
+    quant_options: ''
+
+#cgat options
+gtf2table:
+    classifier: classifier-rnaseq-splicing
